@@ -1,3 +1,3 @@
 # data-gen
 
-Data generation and analytics.
+Data Generation and Analytics.
