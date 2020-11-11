@@ -15,15 +15,12 @@ object WikiMedia {
   println("Spark UI @ :", spark.sparkContext.uiWebUrl)
 
   def readAsDataset(): Unit = {
-    println("Hello Farhan!!")
-    //    /Users/farhan/work/data/wikimedia-rawfiles
-    //    /Users/farhan/Downloads/pageviews-20201110-120000.gz
     val inputPath = "/Users/farhan/work/data/wikimedia-rawfiles"
 
     val df = spark
       .read
       .text(inputPath)
-    //      .limit(10000)
+      .limit(10000)
 
 
     val pageViewsDF = df
@@ -37,7 +34,7 @@ object WikiMedia {
         (domain_code, page_title, count_views, total_response_size)
       })
       .toDF("domain_code", "page_title", "count_views", "total_response_size")
-//      .persist()
+    //      .persist()
 
     println("pageViewsDF.count() : " + pageViewsDF.count())
 
@@ -63,7 +60,7 @@ object WikiMedia {
 
   }
 
-  def readAsRDD()={
+  def readAsRDD() = {
     println("Hello Farhan!!")
     //    /Users/farhan/work/data/wikimedia-rawfiles
     //    /Users/farhan/Downloads/pageviews-20201110-120000.gz
@@ -86,7 +83,7 @@ object WikiMedia {
         (domain_code, page_title, count_views, total_response_size)
       })
       .toDF("domain_code", "page_title", "count_views", "total_response_size")
-//      .persist()
+    //      .persist()
 
     println("pageViewsDF.count() : " + pageViewsDF.count())
 
@@ -113,13 +110,13 @@ object WikiMedia {
   }
 
   def main(args: Array[String]): Unit = {
-//    timeIt {
-//      readAsDataset()
-//    }
-
     timeIt {
-      readAsRDD()
+      readAsDataset()
     }
+
+    //    timeIt {
+    //      readAsRDD()
+    //    }
 
     println("Awaiting input to proceed ...")
     val str = StdIn.readLine()
